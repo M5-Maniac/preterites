@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Español IIH — Día en la Playa</title>
+<title>Español IIH — La Niñez</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -62,8 +62,14 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .vocab-card:hover { border-color: var(--accent); transform: translateY(-1px); }
 .vocab-card .sp { font-weight: 500; font-size: 13.5px; }
 .vocab-card .en { font-size: 12.5px; color: var(--accent3); margin-top: 3px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.2s, opacity 0.2s; }
-.vocab-card.revealed .en { max-height: 40px; opacity: 1; }
+.vocab-card.revealed .en { max-height: 60px; opacity: 1; }
 .vocab-card .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+/* ── SECTION CONTROLS (shuffle + toggle) ── */
+.section-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.lang-toggle button { padding: 7px 14px; font-size: 12px; font-family: 'DM Sans', sans-serif; font-weight: 500; background: var(--surface2); color: var(--muted); border: none; cursor: pointer; transition: all 0.15s; }
+.lang-toggle button.active { background: var(--accent); color: #0a0d14; font-weight: 600; }
 
 /* ── TIME EXPRESSIONS ── */
 .time-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; margin-top: 10px; }
@@ -79,6 +85,8 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .warn-box h4 { font-family: 'Syne', sans-serif; color: var(--accent2); font-size: 13.5px; margin-bottom: 8px; }
 .note-box { background: rgba(167,139,250,0.05); border: 1px solid rgba(167,139,250,0.22); border-radius: 10px; padding: 13px 16px; margin-top: 12px; font-size: 13px; line-height: 1.75; }
 .note-box h4 { font-family: 'Syne', sans-serif; color: var(--accent4); font-size: 13.5px; margin-bottom: 8px; }
+.green-box { background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.25); border-radius: 10px; padding: 13px 16px; margin-top: 12px; font-size: 13px; line-height: 1.75; }
+.green-box h4 { font-family: 'Syne', sans-serif; color: var(--accent3); font-size: 13.5px; margin-bottom: 8px; }
 
 /* ── CONJUGATION GRIDS ── */
 .conj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 11px; margin-top: 12px; }
@@ -94,11 +102,6 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .hl-row td:last-child { color: var(--accent) !important; }
 .hl-special td:last-child { color: var(--accent5) !important; }
 
-/* color tags on conj titles */
-.j-verb .conj-title { border-left: 3px solid var(--accent5); }
-.u-verb .conj-title { border-left: 3px solid var(--accent); }
-.i-verb .conj-title { border-left: 3px solid var(--accent3); }
-
 /* ── ENDINGS GRID ── */
 .endings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; margin-top: 12px; }
 .ending-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
@@ -109,14 +112,6 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .ending-box td:last-child { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; }
 .ending-box tr:last-child td { border-bottom: none; }
 
-/* colorful endings box */
-.colorful-endings { background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.25); border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
-.colorful-endings h4 { font-family: 'Syne', sans-serif; color: var(--accent3); margin-bottom: 10px; font-size: 13.5px; }
-.ending-row { display: flex; gap: 20px; flex-wrap: wrap; font-family: 'DM Mono', monospace; font-size: 13px; margin-bottom: 6px; }
-.ending-row .label { color: var(--muted); font-size: 11.5px; min-width: 80px; }
-.ending-row .val { color: var(--accent3); font-weight: 500; }
-.no-accent-note { color: var(--accent5); font-size: 12px; margin-top: 8px; font-style: italic; }
-
 /* stem table */
 .stem-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
 .stem-table th { text-align: left; padding: 7px 10px; background: var(--surface); border-bottom: 1px solid var(--border); font-family: 'Syne', sans-serif; font-size: 11.5px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; }
@@ -125,9 +120,6 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .stem-table td:nth-child(2) { font-family: 'DM Mono', monospace; color: var(--accent3); }
 .stem-table td:nth-child(3) { color: var(--muted); font-size: 12px; }
 .stem-table tr:last-child td { border-bottom: none; }
-.j-tag { color: var(--accent5); }
-.u-tag { color: var(--accent); }
-.i-tag { color: var(--accent3); }
 
 /* ── VERB LIST ── */
 .verb-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 6px; }
@@ -137,6 +129,34 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .verb-item .eng { font-size: 12.5px; color: var(--yellow); margin-top: 3px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.2s, opacity 0.2s; }
 .verb-item.revealed .eng { max-height: 40px; opacity: 1; }
 .verb-item .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+/* ── TRIGGER WORD CARDS ── */
+.trigger-card { border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: all 0.15s; border: 1px solid var(--border); }
+.trigger-card:hover { transform: translateY(-1px); }
+.trigger-card.pret { background: rgba(251,190,36,0.07); border-color: rgba(251,190,36,0.3); }
+.trigger-card.pret:hover { border-color: var(--yellow); }
+.trigger-card.imp { background: rgba(56,189,248,0.07); border-color: rgba(56,189,248,0.25); }
+.trigger-card.imp:hover { border-color: var(--accent); }
+.trigger-card.special { background: rgba(167,139,250,0.07); border-color: rgba(167,139,250,0.3); }
+.trigger-card.special:hover { border-color: var(--accent4); }
+.trigger-card .sp { font-weight: 500; font-size: 13.5px; }
+.trigger-card.pret .sp { color: var(--yellow); }
+.trigger-card.imp .sp { color: var(--accent); }
+.trigger-card.special .sp { color: var(--accent4); }
+.trigger-card .en { font-size: 12.5px; color: var(--muted); margin-top: 3px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.2s, opacity 0.2s; }
+.trigger-card.revealed .en { max-height: 60px; opacity: 1; }
+.trigger-card .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+/* ── IMPERFECTO TABLE ── */
+.imp-endings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 12px; }
+.imp-ending-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.imp-ending-title { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--accent); text-align: center; }
+.imp-ending-box table { width: 100%; border-collapse: collapse; }
+.imp-ending-box td { padding: 6px 14px; font-size: 12.5px; border-bottom: 1px solid var(--border); }
+.imp-ending-box td:first-child { color: var(--muted); font-size: 11.5px; width: 45%; }
+.imp-ending-box td:last-child { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; }
+.imp-ending-box tr:last-child td { border-bottom: none; }
+.imp-irregular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 11px; margin-top: 12px; }
 
 /* ── FLASHCARD ── */
 .fc-deck-wrap { perspective: 1000px; width: 100%; max-width: 500px; margin: 16px auto; height: 200px; }
@@ -161,6 +181,9 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 /* ── SECTION DIVIDER ── */
 .sec-h2 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin: 26px 0 4px; letter-spacing: -0.3px; }
 .sec-h2 span { color: var(--accent3); }
+.sec-h2.yellow span { color: var(--yellow); }
+.sec-h2.purple span { color: var(--accent4); }
+.sec-h2.blue span { color: var(--accent); }
 
 /* legend */
 .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 10px 0 4px; }
@@ -169,6 +192,7 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 
 @media(max-width:600px) {
   .endings-grid { grid-template-columns: 1fr 1fr; }
+  .imp-endings-grid { grid-template-columns: 1fr; }
   .conj-grid { grid-template-columns: 1fr; }
   .verb-list-grid { grid-template-columns: 1fr; }
 }
@@ -178,8 +202,8 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 
 <header>
   <div>
-    <div class="logo">Español <span class="wave">IIH</span> · <span class="sun">Día en la Playa</span></div>
-    <div class="header-sub">Pretérito · Verbos con Color · Vocabulario de la Playa</div>
+    <div class="logo">Español <span class="wave">IIH</span> · <span class="sun">La Niñez</span></div>
+    <div class="header-sub">Pretérito · Imperfecto · Vocabulario de la Niñez</div>
   </div>
   <div class="header-right">
     <div class="badge">IIH · 2026</div>
@@ -187,37 +211,210 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 </header>
 
 <nav class="tab-bar">
-  <button class="tab active" onclick="showTab('vocab',this)">🏖️ Vocab (Playa)</button>
+  <button class="tab active" onclick="showTab('vocab',this)">👦 Vocab (Niñez)</button>
+  <button class="tab" onclick="showTab('triggerwords',this)">📅 Trigger Words</button>
+  <button class="tab" onclick="showTab('imperfecto',this)">🔄 Imperfecto Rules</button>
   <button class="tab" onclick="showTab('rules',this)">⏰ Preterite Rules</button>
-  <button class="tab" onclick="showTab('colorful',this)">🎨 Colorful Verbs</button>
   <button class="tab" onclick="showTab('secondary',this)">📋 Secondary Verbs</button>
-  <button class="tab" onclick="showTab('secvocab',this)">📚 Secondary Vocab</button>
   <button class="tab" onclick="showTab('flashcards',this)">🃏 Flashcards</button>
 </nav>
 
 <main>
 
-<!-- ══════════════════ VOCAB — PLAYA ══════════════════ -->
+<!-- ══════════════════ VOCAB — NIÑEZ ══════════════════ -->
 <div id="tab-vocab" class="section active">
-  <p class="sec-title">Vocabulario — <span>Día en la Playa</span></p>
-  <p class="sec-desc">Click any card to reveal the English. Click again to hide. These are your beach vocab words for the test!</p>
-  <div class="card">
-    <div class="card-label">Un día en la playa — Español IIH (36 palabras)</div>
-    <div class="vocab-grid" id="vocabGrid"></div>
+  <p class="sec-title">Vocabulario — <span>La Niñez</span></p>
+  <p class="sec-desc">Click any card to reveal the translation. Use the toggle to switch between Spanish→English or English→Spanish practice. Shuffle to mix up the order!</p>
+
+  <div class="section-controls">
+    <button class="btn" onclick="shuffleVocab('ninez')">🔀 Shuffle</button>
+    <div class="lang-toggle">
+      <button id="ninez-es-btn" class="active" onclick="setVocabLang('ninez','es')">ES → EN</button>
+      <button id="ninez-en-btn" onclick="setVocabLang('ninez','en')">EN → ES</button>
+    </div>
   </div>
-  <div class="rule-box" style="margin-top:14px;">
-    <h4>⏱️ Time Expressions — always used with the preterite</h4>
-    <div class="time-grid">
-      <div class="time-item"><div class="sp">anoche</div><div class="en">last night</div></div>
-      <div class="time-item"><div class="sp">anteayer</div><div class="en">day before yesterday</div></div>
-      <div class="time-item"><div class="sp">ayer</div><div class="en">yesterday</div></div>
-      <div class="time-item"><div class="sp">el año pasado</div><div class="en">last year</div></div>
-      <div class="time-item"><div class="sp">el mes pasado</div><div class="en">last month</div></div>
-      <div class="time-item"><div class="sp">la semana pasada</div><div class="en">last week</div></div>
-      <div class="time-item"><div class="sp">el viernes pasado</div><div class="en">last Friday</div></div>
-      <div class="time-item"><div class="sp">una vez</div><div class="en">once / one time</div></div>
-      <div class="time-item"><div class="sp">dos veces</div><div class="en">two times</div></div>
-      <div class="time-item"><div class="sp">hace + tiempo + que</div><div class="en">___ ago</div></div>
+
+  <!-- Question Words -->
+  <div class="sec-h2 blue">Preguntas — <span>Question Words</span></div>
+  <p class="sec-desc" style="margin-top:4px;margin-bottom:10px;">Key question phrases for talking about childhood.</p>
+  <div class="card">
+    <div class="card-label">Preguntas de la niñez</div>
+    <div class="vocab-grid" id="ninezQGrid"></div>
+  </div>
+
+  <!-- Activities -->
+  <div class="sec-h2 blue" style="margin-top:22px;">Actividades — <span>de la Niñez</span></div>
+  <div class="card">
+    <div class="card-label">Actividades de la niñez (27 actividades)</div>
+    <div class="vocab-grid" id="ninezActGrid"></div>
+  </div>
+
+  <!-- Adjectives -->
+  <div class="sec-h2 blue" style="margin-top:22px;">Adjetivos — <span>Personality</span></div>
+  <div class="card">
+    <div class="card-label">Adjetivos — Español IIH</div>
+    <div class="vocab-grid" id="ninezAdjGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════ TRIGGER WORDS ══════════════════ -->
+<div id="tab-triggerwords" class="section">
+  <p class="sec-title">Trigger <span>Words</span></p>
+  <p class="sec-desc">Key words that signal whether to use the preterite or imperfect. Also includes the special verbs whose meaning changes by tense!</p>
+
+  <div class="section-controls">
+    <button class="btn" onclick="shuffleTriggers()">🔀 Shuffle</button>
+    <div class="lang-toggle">
+      <button id="trig-es-btn" class="active" onclick="setTrigLang('es')">ES → EN</button>
+      <button id="trig-en-btn" onclick="setTrigLang('en')">EN → ES</button>
+    </div>
+  </div>
+
+  <div class="legend" style="margin-bottom:14px;">
+    <div class="leg-item"><div class="leg-dot" style="background:var(--yellow)"></div><span>Pretérito trigger words</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div><span>Imperfecto trigger words</span></div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--accent4)"></div><span>Special verbs (meaning changes by tense)</span></div>
+  </div>
+
+  <div class="sec-h2 yellow">El Pretérito — <span>Trigger Words</span></div>
+  <div class="card" style="margin-top:10px;">
+    <div class="card-label">Palabras claves — Pretérito (click to reveal)</div>
+    <div class="vocab-grid" id="pretTrigGrid"></div>
+  </div>
+
+  <div class="sec-h2 blue" style="margin-top:22px;">El Imperfecto — <span>Trigger Words</span></div>
+  <div class="card" style="margin-top:10px;">
+    <div class="card-label">Palabras claves — Imperfecto (click to reveal)</div>
+    <div class="vocab-grid" id="impTrigGrid"></div>
+  </div>
+
+  <div class="sec-h2 purple" style="margin-top:22px;">Special Verbs — <span>Meaning Changes by Tense</span></div>
+  <div class="card" style="margin-top:10px;">
+    <div class="card-label">Verbos especiales — preterite vs. imperfect meaning</div>
+    <div class="vocab-grid" id="specialVerbGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════ IMPERFECTO RULES ══════════════════ -->
+<div id="tab-imperfecto" class="section">
+  <p class="sec-title">El <span>Imperfecto</span> — Rules</p>
+  <p class="sec-desc">Used for ongoing/habitual past actions, descriptions, and background context. All verbs are regular EXCEPT ir, ser, and ver — and there are NO stem changes!</p>
+
+  <div class="rule-box" style="margin-bottom:16px;">
+    <h4>📌 When to use the Imperfect</h4>
+    <strong>Was + -ing form</strong> &nbsp;(e.g. she was eating) &nbsp;|&nbsp; <strong>Used to + verb</strong> &nbsp;(e.g. I used to play)<br>
+    • Habitual/repeated past actions (trigger words like <em>siempre, todos los días</em>)<br>
+    • Descriptions of how things were (appearance, feelings, mental states)<br>
+    • Background setting / ongoing condition in the past<br>
+    • Age, time, weather in the past
+  </div>
+
+  <div class="sec-h2 blue">Regular Endings — <span>-AR, -ER/-IR</span></div>
+  <div class="imp-endings-grid">
+    <div class="imp-ending-box">
+      <div class="imp-ending-title">-AR Verb Endings</div>
+      <table>
+        <tr><td>yo</td><td>-aba</td></tr>
+        <tr><td>tú</td><td>-abas</td></tr>
+        <tr><td>él / ella / Ud.</td><td>-aba</td></tr>
+        <tr><td>nosotros</td><td>-ábamos</td></tr>
+        <tr><td>vosotros</td><td>-abais</td></tr>
+        <tr><td>ellos / Uds.</td><td>-aban</td></tr>
+      </table>
+    </div>
+    <div class="imp-ending-box">
+      <div class="imp-ending-title">-ER / -IR Verb Endings</div>
+      <table>
+        <tr><td>yo</td><td>-ía</td></tr>
+        <tr><td>tú</td><td>-ías</td></tr>
+        <tr><td>él / ella / Ud.</td><td>-ía</td></tr>
+        <tr><td>nosotros</td><td>-íamos</td></tr>
+        <tr><td>vosotros</td><td>-íais</td></tr>
+        <tr><td>ellos / Uds.</td><td>-ían</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-top:14px;">
+    <h4>⭐ Key Rules</h4>
+    • <strong>1S and 3S forms are identical</strong> — subject pronoun is often included to clarify who's doing the action<br>
+    • <strong>NO stem changes</strong> in the imperfect — even verbs irregular in present/preterit are regular here<br>
+    • <strong>ALL -ar, -er, -ir verbs are regular</strong> in the imperfect — EXCEPT ir, ser, and ver<br>
+    • Verbs can be translated as "was/were + -ing" OR "used to + verb"
+  </div>
+
+  <div class="sec-h2 blue" style="margin-top:22px;">Only 3 Irregular Verbs — <span>IR · SER · VER</span></div>
+  <div class="imp-irregular-grid">
+    <div class="conj-box">
+      <div class="conj-title">IR <small>to go</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>iba</td></tr>
+        <tr><td>tú</td><td>ibas</td></tr>
+        <tr><td>él/ella</td><td>iba</td></tr>
+        <tr><td>nosotros</td><td>íbamos</td></tr>
+        <tr><td>vosotros</td><td>ibais</td></tr>
+        <tr><td>ellos/Uds.</td><td>iban</td></tr>
+      </table>
+    </div>
+    <div class="conj-box">
+      <div class="conj-title">SER <small>to be</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>era</td></tr>
+        <tr><td>tú</td><td>eras</td></tr>
+        <tr><td>él/ella</td><td>era</td></tr>
+        <tr><td>nosotros</td><td>éramos</td></tr>
+        <tr><td>vosotros</td><td>erais</td></tr>
+        <tr><td>ellos/Uds.</td><td>eran</td></tr>
+      </table>
+    </div>
+    <div class="conj-box">
+      <div class="conj-title">VER <small>to see</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>veía</td></tr>
+        <tr><td>tú</td><td>veías</td></tr>
+        <tr><td>él/ella</td><td>veía</td></tr>
+        <tr><td>nosotros</td><td>veíamos</td></tr>
+        <tr><td>vosotros</td><td>veíais</td></tr>
+        <tr><td>ellos/Uds.</td><td>veían</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec-h2 blue" style="margin-top:26px;">Example Conjugations — <span>Regular Verbs</span></div>
+  <p class="sec-desc" style="margin-top:4px;">How regular verbs look in the imperfect — drop the infinitive ending, add the imperfect ending.</p>
+  <div class="imp-irregular-grid">
+    <div class="conj-box">
+      <div class="conj-title">HABLAR <small>-AR example</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>hablaba</td></tr>
+        <tr><td>tú</td><td>hablabas</td></tr>
+        <tr><td>él/ella</td><td>hablaba</td></tr>
+        <tr><td>nosotros</td><td>hablábamos</td></tr>
+        <tr><td>vosotros</td><td>hablabais</td></tr>
+        <tr><td>ellos</td><td>hablaban</td></tr>
+      </table>
+    </div>
+    <div class="conj-box">
+      <div class="conj-title">COMER <small>-ER example</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>comía</td></tr>
+        <tr><td>tú</td><td>comías</td></tr>
+        <tr><td>él/ella</td><td>comía</td></tr>
+        <tr><td>nosotros</td><td>comíamos</td></tr>
+        <tr><td>vosotros</td><td>comíais</td></tr>
+        <tr><td>ellos</td><td>comían</td></tr>
+      </table>
+    </div>
+    <div class="conj-box">
+      <div class="conj-title">VIVIR <small>-IR example</small></div>
+      <table class="conj-table">
+        <tr><td>yo</td><td>vivía</td></tr>
+        <tr><td>tú</td><td>vivías</td></tr>
+        <tr><td>él/ella</td><td>vivía</td></tr>
+        <tr><td>nosotros</td><td>vivíamos</td></tr>
+        <tr><td>vosotros</td><td>vivíais</td></tr>
+        <tr><td>ellos</td><td>vivían</td></tr>
+      </table>
     </div>
   </div>
 </div>
@@ -291,186 +488,48 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
     &nbsp;&nbsp;&nbsp;– o → u &nbsp;(e.g. dormir: durmió, durmieron)<br>
     &nbsp;&nbsp;&nbsp;– Use regular -IR endings everywhere else
   </div>
-
-  <div class="warn-box" style="margin-top:12px;">
-    <h4>⚠️ Colorful / J-U-I Verbs have their OWN rules — see the Colorful Verbs tab!</h4>
-    These verbs (DECIR, TRAER, HACER, TENER, ESTAR, PODER, PONER, SABER, QUERER, VENIR, ANDAR, CABER, CONDUCIR, PRODUCIR, TRADUCIR) use a completely different set of endings with <strong>no accent marks</strong>. Do not mix them with regular -AR/-ER/-IR verbs.
-  </div>
-</div>
-
-<!-- ══════════════════ COLORFUL VERBS ══════════════════ -->
-<div id="tab-colorful" class="section">
-  <p class="sec-title"><span>Colorful</span> Verbs — J, U, I</p>
-  <p class="sec-desc">These irregular verbs all share the same special endings — and have NO accent marks. Each has its own unique stem. The J verbs also drop the "i" in the ellos/ellas form.</p>
-
-  <div class="colorful-endings">
-    <h4>🎨 Shared Endings — ALL Colorful Verbs (J, U, I)</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:380px;font-family:'DM Mono',monospace;font-size:13px;margin-bottom:8px;">
-      <div><span style="color:var(--muted);font-size:11px;">yo</span> &nbsp;<span style="color:var(--accent3);">-e</span></div>
-      <div><span style="color:var(--muted);font-size:11px;">nosotros</span> &nbsp;<span style="color:var(--accent3);">-imos</span></div>
-      <div><span style="color:var(--muted);font-size:11px;">tú</span> &nbsp;<span style="color:var(--accent3);">-iste</span></div>
-      <div><span style="color:var(--muted);font-size:11px;">vosotros</span> &nbsp;<span style="color:var(--accent3);">-isteis</span></div>
-      <div><span style="color:var(--muted);font-size:11px;">él/ella</span> &nbsp;<span style="color:var(--accent3);">-o</span></div>
-      <div><span style="color:var(--muted);font-size:11px;">ellos/ellas</span> &nbsp;<span style="color:var(--accent3);">-ieron</span></div>
-    </div>
-    <div class="no-accent-note">★ NO accent marks anywhere — unlike regular -AR/-ER/-IR forms!</div>
-    <div class="no-accent-note" style="color:var(--accent5);margin-top:4px;">★ J verbs: ellos/ellas form drops the "i" → -jeron (not -jieron)</div>
-  </div>
-
-  <table class="stem-table" style="margin-bottom:18px;">
-    <tr>
-      <th>Infinitive</th><th>Preterite Stem</th><th>Notes</th>
-    </tr>
-    <tr><td class="j-tag">DECIR</td><td>dij-</td><td>J verb — drop i in 3P: dijeron</td></tr>
-    <tr><td class="j-tag">TRAER</td><td>traj-</td><td>J verb — drop i in 3P: trajeron</td></tr>
-    <tr><td class="j-tag">TRADUCIR</td><td>traduj-</td><td>J verb — drop i in 3P: tradujeron</td></tr>
-    <tr><td class="j-tag">PRODUCIR</td><td>produj-</td><td>J verb — drop i in 3P: produjeron</td></tr>
-    <tr><td class="j-tag">CONDUCIR</td><td>conduj-</td><td>J verb — drop i in 3P: condujeron</td></tr>
-    <tr><td class="u-tag">ANDAR</td><td>anduv-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">CABER</td><td>cup-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">ESTAR</td><td>estuv-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">PODER</td><td>pud-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">PONER</td><td>pus-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">SABER</td><td>sup-</td><td>U verb</td></tr>
-    <tr><td class="u-tag">TENER</td><td>tuv-</td><td>U verb</td></tr>
-    <tr><td class="i-tag">HACER</td><td>hic-</td><td>I verb — 3S special: hiZo (c→z)</td></tr>
-    <tr><td class="i-tag">QUERER</td><td>quis-</td><td>I verb</td></tr>
-    <tr><td class="i-tag">VENIR</td><td>vin-</td><td>I verb</td></tr>
-  </table>
-
-  <div class="legend">
-    <div class="leg-item"><div class="leg-dot" style="background:var(--accent5)"></div><span style="font-size:12.5px;">J Verbs (dij-, traj-, traduj-, produj-, conduj-)</span></div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div><span style="font-size:12.5px;">U Verbs (anduv-, cup-, estuv-, pud-, pus-, sup-, tuv-)</span></div>
-    <div class="leg-item"><div class="leg-dot" style="background:var(--accent3)"></div><span style="font-size:12.5px;">I Verbs (hic-, quis-, vin-)</span></div>
-  </div>
-
-  <!-- J VERBS -->
-  <div class="sec-h2" style="margin-top:20px;">J Verbs <span>— drop "i" in ellos form</span></div>
-  <div class="conj-grid">
-    <div class="conj-box j-verb">
-      <div class="conj-title">DECIR <small>to say</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>dije</td></tr><tr><td>tú</td><td>dijiste</td></tr><tr><td>él/ella</td><td>dijo</td></tr><tr><td>nosotros</td><td>dijimos</td></tr><tr><td>vosotros</td><td>dijisteis</td></tr><tr class="hl-row"><td>ellos</td><td>dijeron *</td></tr></table>
-    </div>
-    <div class="conj-box j-verb">
-      <div class="conj-title">TRAER <small>to bring</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>traje</td></tr><tr><td>tú</td><td>trajiste</td></tr><tr><td>él/ella</td><td>trajo</td></tr><tr><td>nosotros</td><td>trajimos</td></tr><tr><td>vosotros</td><td>trajisteis</td></tr><tr class="hl-row"><td>ellos</td><td>trajeron *</td></tr></table>
-    </div>
-    <div class="conj-box j-verb">
-      <div class="conj-title">TRADUCIR <small>to translate</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>traduje</td></tr><tr><td>tú</td><td>tradujiste</td></tr><tr><td>él/ella</td><td>tradujo</td></tr><tr><td>nosotros</td><td>tradujimos</td></tr><tr><td>vosotros</td><td>tradujisteis</td></tr><tr class="hl-row"><td>ellos</td><td>tradujeron *</td></tr></table>
-    </div>
-    <div class="conj-box j-verb">
-      <div class="conj-title">PRODUCIR <small>to produce</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>produje</td></tr><tr><td>tú</td><td>produjiste</td></tr><tr><td>él/ella</td><td>produjo</td></tr><tr><td>nosotros</td><td>produjimos</td></tr><tr><td>vosotros</td><td>produjisteis</td></tr><tr class="hl-row"><td>ellos</td><td>produjeron *</td></tr></table>
-    </div>
-    <div class="conj-box j-verb">
-      <div class="conj-title">CONDUCIR <small>to drive</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>conduje</td></tr><tr><td>tú</td><td>condujiste</td></tr><tr><td>él/ella</td><td>condujo</td></tr><tr><td>nosotros</td><td>condujimos</td></tr><tr><td>vosotros</td><td>condujisteis</td></tr><tr class="hl-row"><td>ellos</td><td>condujeron *</td></tr></table>
-    </div>
-  </div>
-
-  <!-- U VERBS -->
-  <div class="sec-h2" style="margin-top:22px;">U Verbs <span>— anduv-, cup-, estuv-, pud-, pus-, sup-, tuv-</span></div>
-  <div class="conj-grid">
-    <div class="conj-box u-verb">
-      <div class="conj-title">ANDAR <small>to walk</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>anduve</td></tr><tr><td>tú</td><td>anduviste</td></tr><tr><td>él/ella</td><td>anduvo</td></tr><tr><td>nosotros</td><td>anduvimos</td></tr><tr><td>vosotros</td><td>anduvisteis</td></tr><tr><td>ellos</td><td>anduvieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">CABER <small>to fit</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>cupe</td></tr><tr><td>tú</td><td>cupiste</td></tr><tr><td>él/ella</td><td>cupo</td></tr><tr><td>nosotros</td><td>cupimos</td></tr><tr><td>vosotros</td><td>cupisteis</td></tr><tr><td>ellos</td><td>cupieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">ESTAR <small>to be (location)</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>estuve</td></tr><tr><td>tú</td><td>estuviste</td></tr><tr><td>él/ella</td><td>estuvo</td></tr><tr><td>nosotros</td><td>estuvimos</td></tr><tr><td>vosotros</td><td>estuvisteis</td></tr><tr><td>ellos</td><td>estuvieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">PODER <small>to be able / can</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>pude</td></tr><tr><td>tú</td><td>pudiste</td></tr><tr><td>él/ella</td><td>pudo</td></tr><tr><td>nosotros</td><td>pudimos</td></tr><tr><td>vosotros</td><td>pudisteis</td></tr><tr><td>ellos</td><td>pudieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">PONER <small>to put</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>puse</td></tr><tr><td>tú</td><td>pusiste</td></tr><tr><td>él/ella</td><td>puso</td></tr><tr><td>nosotros</td><td>pusimos</td></tr><tr><td>vosotros</td><td>pusisteis</td></tr><tr><td>ellos</td><td>pusieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">SABER <small>to know (a fact)</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>supe</td></tr><tr><td>tú</td><td>supiste</td></tr><tr><td>él/ella</td><td>supo</td></tr><tr><td>nosotros</td><td>supimos</td></tr><tr><td>vosotros</td><td>supisteis</td></tr><tr><td>ellos</td><td>supieron</td></tr></table>
-    </div>
-    <div class="conj-box u-verb">
-      <div class="conj-title">TENER <small>to have</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>tuve</td></tr><tr><td>tú</td><td>tuviste</td></tr><tr><td>él/ella</td><td>tuvo</td></tr><tr><td>nosotros</td><td>tuvimos</td></tr><tr><td>vosotros</td><td>tuvisteis</td></tr><tr><td>ellos</td><td>tuvieron</td></tr></table>
-    </div>
-  </div>
-
-  <!-- I VERBS -->
-  <div class="sec-h2" style="margin-top:22px;">I Verbs <span>— hic-, quis-, vin-</span></div>
-  <div class="conj-grid" style="max-width:680px;">
-    <div class="conj-box i-verb">
-      <div class="conj-title">HACER <small>to do / make</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>hice</td></tr><tr><td>tú</td><td>hiciste</td></tr><tr class="hl-special"><td>él/ella</td><td>hiZo ← (c→z)</td></tr><tr><td>nosotros</td><td>hicimos</td></tr><tr><td>vosotros</td><td>hicisteis</td></tr><tr><td>ellos</td><td>hicieron</td></tr></table>
-    </div>
-    <div class="conj-box i-verb">
-      <div class="conj-title">QUERER <small>to want</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>quise</td></tr><tr><td>tú</td><td>quisiste</td></tr><tr><td>él/ella</td><td>quiso</td></tr><tr><td>nosotros</td><td>quisimos</td></tr><tr><td>vosotros</td><td>quisisteis</td></tr><tr><td>ellos</td><td>quisieron</td></tr></table>
-    </div>
-    <div class="conj-box i-verb">
-      <div class="conj-title">VENIR <small>to come</small></div>
-      <table class="conj-table"><tr><td>yo</td><td>vine</td></tr><tr><td>tú</td><td>viniste</td></tr><tr><td>él/ella</td><td>vino</td></tr><tr><td>nosotros</td><td>vinimos</td></tr><tr><td>vosotros</td><td>vinisteis</td></tr><tr><td>ellos</td><td>vinieron</td></tr></table>
-    </div>
-  </div>
-
-  <div class="warn-box" style="margin-top:16px;">
-    <h4>⚠️ Key Reminders for Colorful Verbs</h4>
-    1. <strong>No accent marks anywhere</strong> — yo form is -e (not -é), él/ella form is -o (not -ó)<br>
-    2. <strong>J verbs drop the "i"</strong> in ellos form → di<strong>j</strong>eron NOT di<strong>ji</strong>eron<br>
-    3. <strong>HACER hiZo</strong> — the c changes to z in él/ella ONLY to keep the soft sound<br>
-    4. These verbs replace normal endings completely — the stem changes too
-  </div>
 </div>
 
 <!-- ══════════════════ SECONDARY VERBS ══════════════════ -->
 <div id="tab-secondary" class="section">
   <p class="sec-title">Secondary <span>Verb Lists</span></p>
-  <p class="sec-desc">These are the -AR, -ER, and -IR verb lists from your class materials. Secondary/extra reference — not the main colorful verb focus.</p>
+  <p class="sec-desc">The -AR, -ER, and -IR verb lists from your class materials. Click any verb to reveal the English meaning.</p>
   <div class="card">
-    <div class="card-label">Regular -AR Verbs (from yellow sheet)</div>
+    <div class="card-label">Regular -AR Verbs</div>
     <div class="verb-list-grid" id="arVerbGrid"></div>
   </div>
   <div class="card">
-    <div class="card-label">Regular -ER Verbs (from orange sheet)</div>
+    <div class="card-label">Regular -ER Verbs</div>
     <div class="verb-list-grid" id="erVerbGrid"></div>
   </div>
   <div class="card">
-    <div class="card-label">Regular -IR Verbs (from orange sheet)</div>
+    <div class="card-label">Regular -IR Verbs</div>
     <div class="verb-list-grid" id="irVerbGrid"></div>
-  </div>
-</div>
-
-<!-- ══════════════════ SECONDARY VOCAB ══════════════════ -->
-<div id="tab-secvocab" class="section">
-  <p class="sec-title">Secondary <span>Vocab</span></p>
-  <p class="sec-desc">Additional vocabulary from earlier in the unit — click to reveal English.</p>
-  <div class="card">
-    <div class="card-label">Secondary vocabulary — Español IIH</div>
-    <div class="vocab-grid" id="secVocabGrid"></div>
   </div>
 </div>
 
 <!-- ══════════════════ FLASHCARDS ══════════════════ -->
 <div id="tab-flashcards" class="section">
   <p class="sec-title">Flash<span>cards</span></p>
-  <p class="sec-desc">Click the card to flip it. Shuffle at any time or switch decks.</p>
+  <p class="sec-desc">Click the card to flip it. Use arrow buttons or keyboard arrows to navigate. Space bar also flips!</p>
   <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
     <select class="styled" id="fcDeck" onchange="loadDeck()">
-      <option value="vocab">🏖️ Beach Vocab (main)</option>
-      <option value="secvocab">📚 Secondary Vocab</option>
-      <option value="colorful">🎨 Colorful Verb Conjugations</option>
+      <option value="ninez_act">👦 Actividades de la Niñez</option>
+      <option value="ninez_adj">😊 Adjetivos (Niñez)</option>
+      <option value="ninez_q">❓ Preguntas (Niñez)</option>
+      <option value="pret_trig">📅 Pretérito Trigger Words</option>
+      <option value="imp_trig">🔄 Imperfecto Trigger Words</option>
+      <option value="special">⭐ Special Verbs (P vs I)</option>
+      <option value="ninez_all">🔀 All Niñez Vocab</option>
       <option value="ar">📋 -AR Verbs</option>
       <option value="er">📋 -ER Verbs</option>
       <option value="ir">📋 -IR Verbs</option>
-      <option value="allvocab">🔀 All Vocab Combined</option>
     </select>
     <button class="btn" onclick="shuffleDeck()">🔀 Shuffle</button>
+    <div class="lang-toggle">
+      <button id="fc-es-btn" class="active" onclick="setFCLang('es')">ES → EN</button>
+      <button id="fc-en-btn" onclick="setFCLang('en')">EN → ES</button>
+    </div>
   </div>
   <div class="fc-deck-wrap" onclick="flipCard()">
     <div class="fc-inner" id="fcInner">
@@ -479,12 +538,12 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
         <div class="fc-word" id="fcWord">—</div>
       </div>
       <div class="fc-face back">
-        <div class="fc-tag">English</div>
+        <div class="fc-tag" id="fcBackTag">English</div>
         <div class="fc-answer" id="fcAnswer">—</div>
       </div>
     </div>
   </div>
-  <div class="fc-tap">tap card to flip · use arrow buttons to navigate</div>
+  <div class="fc-tap">tap card to flip · use arrow buttons or keyboard arrows to navigate</div>
   <div class="fc-counter" id="fcCounter">0 / 0</div>
   <div class="fc-controls">
     <button class="btn" onclick="fcPrev()">← Prev</button>
@@ -497,41 +556,109 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 <script>
 // ── DATA ─────────────────────────────────────────────────────────────────────
 
-const BEACH_VOCAB = [
-  ["el amanecer","sunrise"],["la arena","sand"],["el bote","boat"],
-  ["el cangrejo","crab"],["el castillo de arena","sandcastle"],
-  ["el chaleco salvavidas","life jacket"],["las chancletas","flip flops"],
-  ["la cometa","kite"],["la concha","shell"],["el cubo","bucket"],
-  ["el delfín","dolphin"],["la estrella de mar","starfish"],
-  ["la fogata","bonfire"],["las gafas de sol","sunglasses"],
-  ["la isla","island"],["el lago","lake"],["el mar","sea"],
-  ["la nevera de playa","cooler"],["el océano","ocean"],["la ola","wave"],
-  ["la orilla","shore"],["la pala","shovel"],["la palmera","palm tree"],
-  ["la piedra","stone"],["el protector solar","sunscreen"],
-  ["la puesta de sol","sunset"],["la quemadura de sol","sunburn"],
-  ["la roca","rock"],["el salvavidas","lifeguard"],
-  ["la silla de playa","beach chair"],["la sombra","shade"],
-  ["la sombrilla","beach umbrella"],["la tabla de surf","surfboard"],
-  ["el tiburón","shark"],["la toalla de playa","beach towel"],
-  ["el traje de baño","bathing suit"],
+// Niñez question phrases
+const NINEZ_Q = [
+  ["¿Cómo eras?","What were you like?"],
+  ["¿Con qué soñabas?","What did you dream about?"],
+  ["¿Qué querías ser?","What did you want to be?"],
+  ["¿Qué hacías de niño/niña?","What did you do as a little boy/girl?"],
+  ["¿Qué te gustaba hacer?","What did you like to do?"],
+  ["De niño/a...","As a boy/girl/child..."],
+  ["Cuando era joven","When I was young"],
+  ["Cuando era un niño/a","When I was a child"],
 ];
 
-const SEC_VOCAB = [
-  ["la amistad","friendship"],["el árbol","tree"],["la biblioteca","library"],
-  ["los bloques","blocks"],["la campana","bell"],["la carta","letter"],
-  ["la casa de…","…'s house"],["el centro comercial","mall"],
-  ["la ciudad","city"],["los comerciales","commercials"],["el dinero","money"],
-  ["el correo electrónico","email"],["el edificio","building"],
-  ["las flores","flowers"],["el gimnasio","gym"],["las hojas","leaves"],
-  ["el horario","schedule"],["la iglesia","church"],["el libro","book"],
-  ["el mensaje de texto","text message"],["las mentiras","lies"],
-  ["las noticias","news"],["la novela","novel"],
-  ["la obra","show / Broadway show"],["el parque","park"],
-  ["el partido","sports match"],["la película","movie"],
-  ["el periódico","newspaper"],["el planeta","planet"],
-  ["el programa (de tv)","TV show"],["el regalo","gift"],
-  ["la revista","magazine"],["el ruido","noise"],["la tienda","store"],
-  ["el timbre","doorbell"],["la tormenta","storm"],["el viento","wind"],
+// Niñez activities
+const NINEZ_ACT = [
+  ["asistir a la guardería infantil","to attend daycare"],
+  ["colorear","to color"],
+  ["columpiarse","to swing"],
+  ["compartir los juguetes","to share toys"],
+  ["coleccionar tarjetas","to collect trading cards"],
+  ["contar chistes / cuentos","to tell jokes / stories"],
+  ["echar carreras","to run races"],
+  ["hacer travesuras","to play tricks/pranks"],
+  ["jugar a la casita","to play house"],
+  ["jugar a las damas","to play checkers"],
+  ["jugar al escondite","to play hide and seek"],
+  ["jugar afuera / adentro","to play outside/inside"],
+  ["jugar con bloques","to play with blocks"],
+  ["jugar con canicas","to play with marbles"],
+  ["jugar con carritos","to play with toy cars"],
+  ["jugar con muñecas","to play with dolls"],
+  ["jugar con peluches","to play with stuffed animals"],
+  ["jugar en el patio de recreo","to play on the playground"],
+  ["llevarse bien / mal con","to get along well/poorly with"],
+  ["mirar dibujos animados","to watch cartoons"],
+  ["odiar","to hate"],
+  ["pelear","to fight"],
+  ["portarse bien/mal","to behave well/poorly"],
+  ["sacar buenas/malas notas","to get good/bad grades"],
+  ["saltar a la cuerda","to jump rope"],
+  ["soñar con","to dream about"],
+  ["trepar a los árboles","to climb trees"],
+];
+
+// Niñez adjectives
+const NINEZ_ADJ = [
+  ["amable","kind, nice"],
+  ["aventurero/a","adventurous"],
+  ["callado/a","quiet"],
+  ["cariñoso/a","affectionate"],
+  ["chismoso/a","gossipy"],
+  ["chistoso/a","funny"],
+  ["curioso/a","curious"],
+  ["hablador/a","talkative"],
+  ["egoísta","selfish"],
+  ["estricto/a","strict"],
+  ["mimado/a","spoiled"],
+  ["impaciente","impatient"],
+  ["juguetón/a","playful"],
+  ["obediente","obedient"],
+  ["paciente","patient"],
+  ["solitario/a","lonely, solitary"],
+];
+
+// Preterite trigger words
+const PRET_TRIGGERS = [
+  ["ayer","yesterday"],
+  ["anoche","last night"],
+  ["anteayer","the day before yesterday"],
+  ["el...pasado","last..."],
+  ["la...pasada","last..."],
+  ["esta mañana","this morning"],
+  ["un día","one day"],
+  ["una vez","once / one time"],
+  ["dos veces / tres veces","twice / three times"],
+  ["hace # años (meses, semanas, días)","# years ago (months, weeks, days)"],
+  ["el otro día","the other day"],
+  ["entonces","then"],
+];
+
+// Imperfect trigger words
+const IMP_TRIGGERS = [
+  ["todos los días","every day"],
+  ["siempre","always"],
+  ["frecuentemente","frequently"],
+  ["cada día","each day"],
+  ["los lunes","on Mondays"],
+  ["generalmente","generally"],
+  ["normalmente","normally"],
+  ["mientras","while"],
+  ["de vez en cuando","once in a while"],
+  ["muchas veces","many times"],
+  ["a veces","sometimes"],
+  ["nunca","never"],
+];
+
+// Special verbs — meaning changes by tense
+const SPECIAL_VERBS = [
+  ["conocer (pretérito)","met for the first time"],
+  ["saber (pretérito)","found out"],
+  ["hubo (pretérito)","there was / there were (event that happened)"],
+  ["conocer (imperfecto)","knew a person or place"],
+  ["saber (imperfecto)","knew a fact"],
+  ["había (imperfecto)","there was / there were (ongoing condition)"],
 ];
 
 const AR_VERBS = [
@@ -575,39 +702,101 @@ const IR_VERBS = [
   ["salir","to leave / go out"],["vivir","to live"],
 ];
 
-// Colorful verb flashcards (full conjugations)
-const COLORFUL_FC = [
-  ["DECIR — yo","dije"],["DECIR — tú","dijiste"],["DECIR — él/ella","dijo"],
-  ["DECIR — nosotros","dijimos"],["DECIR — ellos","dijeron"],
-  ["TRAER — yo","traje"],["TRAER — tú","trajiste"],["TRAER — él/ella","trajo"],
-  ["TRAER — nosotros","trajimos"],["TRAER — ellos","trajeron"],
-  ["TRADUCIR — yo","traduje"],["TRADUCIR — ellos","tradujeron"],
-  ["PRODUCIR — yo","produje"],["PRODUCIR — ellos","produjeron"],
-  ["CONDUCIR — yo","conduje"],["CONDUCIR — ellos","condujeron"],
-  ["ANDAR — yo","anduve"],["ANDAR — él/ella","anduvo"],["ANDAR — ellos","anduvieron"],
-  ["CABER — yo","cupe"],["CABER — él/ella","cupo"],["CABER — ellos","cupieron"],
-  ["ESTAR — yo","estuve"],["ESTAR — él/ella","estuvo"],["ESTAR — ellos","estuvieron"],
-  ["PODER — yo","pude"],["PODER — él/ella","pudo"],["PODER — ellos","pudieron"],
-  ["PONER — yo","puse"],["PONER — él/ella","puso"],["PONER — ellos","pusieron"],
-  ["SABER — yo","supe"],["SABER — él/ella","supo"],["SABER — ellos","supieron"],
-  ["TENER — yo","tuve"],["TENER — él/ella","tuvo"],["TENER — ellos","tuvieron"],
-  ["HACER — yo","hice"],["HACER — él/ella","hiZo"],["HACER — ellos","hicieron"],
-  ["QUERER — yo","quise"],["QUERER — él/ella","quiso"],["QUERER — ellos","quisieron"],
-  ["VENIR — yo","vine"],["VENIR — él/ella","vino"],["VENIR — ellos","vinieron"],
-];
+// ── VOCAB STATE ───────────────────────────────────────────────────────────────
+let ninezState = {
+  q:   { data: [...NINEZ_Q],       lang: 'es' },
+  act: { data: [...NINEZ_ACT],     lang: 'es' },
+  adj: { data: [...NINEZ_ADJ],     lang: 'es' },
+};
 
-// ── BUILD GRIDS ───────────────────────────────────────────────────────────────
-function buildVocabGrid(containerId, data) {
+let trigState = {
+  pret:    { data: [...PRET_TRIGGERS], lang: 'es' },
+  imp:     { data: [...IMP_TRIGGERS],  lang: 'es' },
+  special: { data: [...SPECIAL_VERBS], lang: 'es' },
+};
+
+// ── BUILD VOCAB GRID (generic) ────────────────────────────────────────────────
+function buildVocabGrid(containerId, data, lang, cardClass) {
   const g = document.getElementById(containerId);
+  g.innerHTML = '';
   data.forEach(([sp, en]) => {
     const d = document.createElement('div');
-    d.className = 'vocab-card';
-    d.innerHTML = `<div class="sp">${sp}</div><div class="en">${en}</div><div class="tip">tap to reveal</div>`;
+    d.className = cardClass || 'vocab-card';
+    const front = lang === 'es' ? sp : en;
+    const back  = lang === 'es' ? en : sp;
+    d.innerHTML = `<div class="sp">${front}</div><div class="en">${back}</div><div class="tip">tap to reveal</div>`;
     d.onclick = () => d.classList.toggle('revealed');
     g.appendChild(d);
   });
 }
 
+function rebuildNinez() {
+  buildVocabGrid('ninezQGrid',   ninezState.q.data,   ninezState.q.lang);
+  buildVocabGrid('ninezActGrid', ninezState.act.data, ninezState.act.lang);
+  buildVocabGrid('ninezAdjGrid', ninezState.adj.data, ninezState.adj.lang);
+}
+
+function setVocabLang(ns, lang) {
+  ninezState.q.lang   = lang;
+  ninezState.act.lang = lang;
+  ninezState.adj.lang = lang;
+  document.getElementById('ninez-es-btn').classList.toggle('active', lang === 'es');
+  document.getElementById('ninez-en-btn').classList.toggle('active', lang === 'en');
+  rebuildNinez();
+}
+
+function shuffleVocab(ns) {
+  [ninezState.q, ninezState.act, ninezState.adj].forEach(s => {
+    for (let i = s.data.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [s.data[i], s.data[j]] = [s.data[j], s.data[i]];
+    }
+  });
+  rebuildNinez();
+}
+
+// ── BUILD TRIGGER GRIDS ───────────────────────────────────────────────────────
+function buildTrigGrid(containerId, data, lang, cardClass) {
+  const g = document.getElementById(containerId);
+  g.innerHTML = '';
+  data.forEach(([sp, en]) => {
+    const d = document.createElement('div');
+    d.className = cardClass;
+    const front = lang === 'es' ? sp : en;
+    const back  = lang === 'es' ? en : sp;
+    d.innerHTML = `<div class="sp">${front}</div><div class="en">${back}</div><div class="tip">tap to reveal</div>`;
+    d.onclick = () => d.classList.toggle('revealed');
+    g.appendChild(d);
+  });
+}
+
+function rebuildTriggers() {
+  const lang = trigState.pret.lang;
+  buildTrigGrid('pretTrigGrid',    trigState.pret.data,    lang, 'trigger-card pret');
+  buildTrigGrid('impTrigGrid',     trigState.imp.data,     lang, 'trigger-card imp');
+  buildTrigGrid('specialVerbGrid', trigState.special.data, lang, 'trigger-card special');
+}
+
+function setTrigLang(lang) {
+  trigState.pret.lang    = lang;
+  trigState.imp.lang     = lang;
+  trigState.special.lang = lang;
+  document.getElementById('trig-es-btn').classList.toggle('active', lang === 'es');
+  document.getElementById('trig-en-btn').classList.toggle('active', lang === 'en');
+  rebuildTriggers();
+}
+
+function shuffleTriggers() {
+  [trigState.pret, trigState.imp, trigState.special].forEach(s => {
+    for (let i = s.data.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [s.data[i], s.data[j]] = [s.data[j], s.data[i]];
+    }
+  });
+  rebuildTriggers();
+}
+
+// ── VERB GRID ─────────────────────────────────────────────────────────────────
 function buildVerbGrid(id, data) {
   const g = document.getElementById(id);
   data.forEach(([inf, eng]) => {
@@ -628,22 +817,35 @@ function showTab(name, btn) {
 }
 
 // ── FLASHCARDS ────────────────────────────────────────────────────────────────
-let fcData = [], fcIdx = 0, fcFlipped = false;
+let fcData = [], fcIdx = 0, fcFlipped = false, fcLang = 'es';
 
 function getDeckData(key) {
   const map = {
-    vocab:    BEACH_VOCAB.map(([sp,en]) => ({f:sp, b:en, t:'Beach Vocab'})),
-    secvocab: SEC_VOCAB.map(([sp,en]) => ({f:sp, b:en, t:'Secondary Vocab'})),
-    colorful: COLORFUL_FC.map(([sp,en]) => ({f:sp, b:en, t:'Colorful Verb'})),
-    ar:       AR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-AR Verb'})),
-    er:       ER_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-ER Verb'})),
-    ir:       IR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-IR Verb'})),
-    allvocab: [
-      ...BEACH_VOCAB.map(([sp,en]) => ({f:sp, b:en, t:'Beach'})),
-      ...SEC_VOCAB.map(([sp,en]) => ({f:sp, b:en, t:'Secondary'})),
+    ninez_act:  NINEZ_ACT.map(([sp,en]) => ({f:sp, b:en, t:'Actividades'})),
+    ninez_adj:  NINEZ_ADJ.map(([sp,en]) => ({f:sp, b:en, t:'Adjetivos'})),
+    ninez_q:    NINEZ_Q.map(([sp,en]) => ({f:sp, b:en, t:'Preguntas'})),
+    pret_trig:  PRET_TRIGGERS.map(([sp,en]) => ({f:sp, b:en, t:'Pretérito'})),
+    imp_trig:   IMP_TRIGGERS.map(([sp,en]) => ({f:sp, b:en, t:'Imperfecto'})),
+    special:    SPECIAL_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'Special Verb'})),
+    ninez_all:  [
+      ...NINEZ_Q.map(([sp,en]) => ({f:sp, b:en, t:'Preguntas'})),
+      ...NINEZ_ACT.map(([sp,en]) => ({f:sp, b:en, t:'Actividades'})),
+      ...NINEZ_ADJ.map(([sp,en]) => ({f:sp, b:en, t:'Adjetivos'})),
     ],
+    ar:         AR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-AR Verb'})),
+    er:         ER_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-ER Verb'})),
+    ir:         IR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-IR Verb'})),
   };
   return map[key] || [];
+}
+
+function setFCLang(lang) {
+  fcLang = lang;
+  document.getElementById('fc-es-btn').classList.toggle('active', lang === 'es');
+  document.getElementById('fc-en-btn').classList.toggle('active', lang === 'en');
+  fcFlipped = false;
+  document.getElementById('fcInner').classList.remove('flipped');
+  renderFC();
 }
 
 function loadDeck() {
@@ -656,10 +858,13 @@ function loadDeck() {
 function renderFC() {
   if (!fcData.length) return;
   const c = fcData[fcIdx];
-  document.getElementById('fcWord').textContent = c.f;
-  document.getElementById('fcAnswer').textContent = c.b;
-  document.getElementById('fcTag').textContent = c.t;
-  document.getElementById('fcCounter').textContent = `${fcIdx + 1} / ${fcData.length}`;
+  const front = fcLang === 'es' ? c.f : c.b;
+  const back  = fcLang === 'es' ? c.b : c.f;
+  document.getElementById('fcWord').textContent    = front;
+  document.getElementById('fcAnswer').textContent  = back;
+  document.getElementById('fcTag').textContent     = fcLang === 'es' ? 'Español' : 'English';
+  document.getElementById('fcBackTag').textContent = fcLang === 'es' ? 'English' : 'Español';
+  document.getElementById('fcCounter').textContent = `${fcIdx + 1} / ${fcData.length}  ·  ${c.t}`;
 }
 
 function flipCard() {
@@ -688,8 +893,8 @@ document.addEventListener('keydown', e => {
 });
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-buildVocabGrid('vocabGrid', BEACH_VOCAB);
-buildVocabGrid('secVocabGrid', SEC_VOCAB);
+rebuildNinez();
+rebuildTriggers();
 buildVerbGrid('arVerbGrid', AR_VERBS);
 buildVerbGrid('erVerbGrid', ER_VERBS);
 buildVerbGrid('irVerbGrid', IR_VERBS);
