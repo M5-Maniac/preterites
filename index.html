@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Español IIH — La Niñez</title>
+<title>Español IIH — La Vivienda</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -65,17 +65,11 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .vocab-card.revealed .en { max-height: 60px; opacity: 1; }
 .vocab-card .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
 
-/* ── SECTION CONTROLS (shuffle + toggle) ── */
+/* ── SECTION CONTROLS ── */
 .section-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
 .lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .lang-toggle button { padding: 7px 14px; font-size: 12px; font-family: 'DM Sans', sans-serif; font-weight: 500; background: var(--surface2); color: var(--muted); border: none; cursor: pointer; transition: all 0.15s; }
 .lang-toggle button.active { background: var(--accent); color: #0a0d14; font-weight: 600; }
-
-/* ── TIME EXPRESSIONS ── */
-.time-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 6px; margin-top: 10px; }
-.time-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 7px 11px; }
-.time-item .sp { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--yellow); }
-.time-item .en { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
 /* ── RULE BOXES ── */
 .rule-box { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.2); border-radius: 10px; padding: 13px 16px; margin-top: 12px; font-size: 13px; line-height: 1.75; }
@@ -112,23 +106,16 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .ending-box td:last-child { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; }
 .ending-box tr:last-child td { border-bottom: none; }
 
-/* stem table */
-.stem-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
-.stem-table th { text-align: left; padding: 7px 10px; background: var(--surface); border-bottom: 1px solid var(--border); font-family: 'Syne', sans-serif; font-size: 11.5px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; }
-.stem-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
-.stem-table td:first-child { color: var(--text); font-weight: 500; }
-.stem-table td:nth-child(2) { font-family: 'DM Mono', monospace; color: var(--accent3); }
-.stem-table td:nth-child(3) { color: var(--muted); font-size: 12px; }
-.stem-table tr:last-child td { border-bottom: none; }
-
-/* ── VERB LIST ── */
-.verb-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 6px; }
-.verb-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: all 0.15s; }
-.verb-item:hover { border-color: var(--accent3); transform: translateY(-1px); }
-.verb-item .inf { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; font-size: 13.5px; }
-.verb-item .eng { font-size: 12.5px; color: var(--yellow); margin-top: 3px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.2s, opacity 0.2s; }
-.verb-item.revealed .eng { max-height: 40px; opacity: 1; }
-.verb-item .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
+/* ── IMP ENDINGS GRID ── */
+.imp-endings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 12px; }
+.imp-ending-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.imp-ending-title { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--accent); text-align: center; }
+.imp-ending-box table { width: 100%; border-collapse: collapse; }
+.imp-ending-box td { padding: 6px 14px; font-size: 12.5px; border-bottom: 1px solid var(--border); }
+.imp-ending-box td:first-child { color: var(--muted); font-size: 11.5px; width: 45%; }
+.imp-ending-box td:last-child { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; }
+.imp-ending-box tr:last-child td { border-bottom: none; }
+.imp-irregular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 11px; margin-top: 12px; }
 
 /* ── TRIGGER WORD CARDS ── */
 .trigger-card { border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: all 0.15s; border: 1px solid var(--border); }
@@ -147,16 +134,23 @@ main { max-width: 960px; margin: 0 auto; padding: 24px 16px 80px; }
 .trigger-card.revealed .en { max-height: 60px; opacity: 1; }
 .trigger-card .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
 
-/* ── IMPERFECTO TABLE ── */
-.imp-endings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 12px; }
-.imp-ending-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-.imp-ending-title { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 14px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--accent); text-align: center; }
-.imp-ending-box table { width: 100%; border-collapse: collapse; }
-.imp-ending-box td { padding: 6px 14px; font-size: 12.5px; border-bottom: 1px solid var(--border); }
-.imp-ending-box td:first-child { color: var(--muted); font-size: 11.5px; width: 45%; }
-.imp-ending-box td:last-child { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; }
-.imp-ending-box tr:last-child td { border-bottom: none; }
-.imp-irregular-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 11px; margin-top: 12px; }
+/* ── VERB LIST ── */
+.verb-list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 6px; }
+.verb-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; cursor: pointer; transition: all 0.15s; }
+.verb-item:hover { border-color: var(--accent3); transform: translateY(-1px); }
+.verb-item .inf { font-family: 'DM Mono', monospace; color: var(--accent3); font-weight: 500; font-size: 13.5px; }
+.verb-item .eng { font-size: 12.5px; color: var(--yellow); margin-top: 3px; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.2s, opacity 0.2s; }
+.verb-item.revealed .eng { max-height: 40px; opacity: 1; }
+.verb-item .tip { font-size: 9px; color: var(--border); margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+/* stem table */
+.stem-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12.5px; }
+.stem-table th { text-align: left; padding: 7px 10px; background: var(--surface); border-bottom: 1px solid var(--border); font-family: 'Syne', sans-serif; font-size: 11.5px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; }
+.stem-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+.stem-table td:first-child { color: var(--text); font-weight: 500; }
+.stem-table td:nth-child(2) { font-family: 'DM Mono', monospace; color: var(--accent3); }
+.stem-table td:nth-child(3) { color: var(--muted); font-size: 12px; }
+.stem-table tr:last-child td { border-bottom: none; }
 
 /* ── FLASHCARD ── */
 .fc-deck-wrap { perspective: 1000px; width: 100%; max-width: 500px; margin: 16px auto; height: 200px; }
@@ -184,6 +178,7 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 .sec-h2.yellow span { color: var(--yellow); }
 .sec-h2.purple span { color: var(--accent4); }
 .sec-h2.blue span { color: var(--accent); }
+.sec-h2.pink span { color: var(--accent5); }
 
 /* legend */
 .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 10px 0 4px; }
@@ -195,6 +190,7 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
   .imp-endings-grid { grid-template-columns: 1fr; }
   .conj-grid { grid-template-columns: 1fr; }
   .verb-list-grid { grid-template-columns: 1fr; }
+  .imp-irregular-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -202,8 +198,8 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 
 <header>
   <div>
-    <div class="logo">Español <span class="wave">IIH</span> · <span class="sun">La Niñez</span></div>
-    <div class="header-sub">Pretérito · Imperfecto · Vocabulario de la Niñez</div>
+    <div class="logo">Español <span class="wave">IIH</span> · <span class="sun">La Vivienda</span></div>
+    <div class="header-sub">Pretérito · Imperfecto · Vocabulario del Hogar</div>
   </div>
   <div class="header-right">
     <div class="badge">IIH · 2026</div>
@@ -211,7 +207,8 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 </header>
 
 <nav class="tab-bar">
-  <button class="tab active" onclick="showTab('vocab',this)">👦 Vocab (Niñez)</button>
+  <button class="tab active" onclick="showTab('vocab',this)">🏠 Vocab (Vivienda)</button>
+  <button class="tab" onclick="showTab('verbos',this)">🧹 Verbos</button>
   <button class="tab" onclick="showTab('triggerwords',this)">📅 Trigger Words</button>
   <button class="tab" onclick="showTab('imperfecto',this)">🔄 Imperfecto Rules</button>
   <button class="tab" onclick="showTab('rules',this)">⏰ Preterite Rules</button>
@@ -221,39 +218,85 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 
 <main>
 
-<!-- ══════════════════ VOCAB — NIÑEZ ══════════════════ -->
+<!-- ══════════════════ VOCAB — LA VIVIENDA ══════════════════ -->
 <div id="tab-vocab" class="section active">
-  <p class="sec-title">Vocabulario — <span>La Niñez</span></p>
-  <p class="sec-desc">Click any card to reveal the translation. Use the toggle to switch between Spanish→English or English→Spanish practice. Shuffle to mix up the order!</p>
+  <p class="sec-title">Vocabulario — <span>La Vivienda</span></p>
+  <p class="sec-desc">Click any card to reveal the translation. Toggle between Spanish→English or English→Spanish. Shuffle to mix up the order!</p>
 
   <div class="section-controls">
-    <button class="btn" onclick="shuffleVocab('ninez')">🔀 Shuffle</button>
+    <button class="btn" onclick="shuffleVocab()">🔀 Shuffle</button>
     <div class="lang-toggle">
-      <button id="ninez-es-btn" class="active" onclick="setVocabLang('ninez','es')">ES → EN</button>
-      <button id="ninez-en-btn" onclick="setVocabLang('ninez','en')">EN → ES</button>
+      <button id="vocab-es-btn" class="active" onclick="setVocabLang('es')">ES → EN</button>
+      <button id="vocab-en-btn" onclick="setVocabLang('en')">EN → ES</button>
     </div>
   </div>
 
-  <!-- Question Words -->
-  <div class="sec-h2 blue">Preguntas — <span>Question Words</span></div>
-  <p class="sec-desc" style="margin-top:4px;margin-bottom:10px;">Key question phrases for talking about childhood.</p>
+  <!-- El Hogar -->
+  <div class="sec-h2 blue">El Hogar — <span>Home & Neighborhood</span></div>
   <div class="card">
-    <div class="card-label">Preguntas de la niñez</div>
-    <div class="vocab-grid" id="ninezQGrid"></div>
+    <div class="card-label">El Hogar — places &amp; community (6 words)</div>
+    <div class="vocab-grid" id="hogarGrid"></div>
   </div>
 
-  <!-- Activities -->
-  <div class="sec-h2 blue" style="margin-top:22px;">Actividades — <span>de la Niñez</span></div>
+  <!-- Los Cuartos -->
+  <div class="sec-h2 blue" style="margin-top:22px;">Los Cuartos — <span>Rooms</span></div>
   <div class="card">
-    <div class="card-label">Actividades de la niñez (27 actividades)</div>
-    <div class="vocab-grid" id="ninezActGrid"></div>
+    <div class="card-label">Los Cuartos — rooms of the house (14 words)</div>
+    <div class="vocab-grid" id="cuartosGrid"></div>
   </div>
 
-  <!-- Adjectives -->
-  <div class="sec-h2 blue" style="margin-top:22px;">Adjetivos — <span>Personality</span></div>
+  <!-- Los Muebles y Más -->
+  <div class="sec-h2 blue" style="margin-top:22px;">Los Muebles y Más — <span>Furniture &amp; More</span></div>
   <div class="card">
-    <div class="card-label">Adjetivos — Español IIH</div>
-    <div class="vocab-grid" id="ninezAdjGrid"></div>
+    <div class="card-label">Los Muebles — furniture, fixtures &amp; objects (26 words)</div>
+    <div class="vocab-grid" id="mueblesGrid"></div>
+  </div>
+
+  <!-- Los Electrodomésticos -->
+  <div class="sec-h2 blue" style="margin-top:22px;">Los Electrodomésticos — <span>Appliances</span></div>
+  <div class="card">
+    <div class="card-label">Los Electrodomésticos — kitchen &amp; laundry appliances (9 words)</div>
+    <div class="vocab-grid" id="electroGrid"></div>
+  </div>
+
+  <!-- La Mesa -->
+  <div class="sec-h2 blue" style="margin-top:22px;">La Mesa — <span>Table Settings</span></div>
+  <div class="card">
+    <div class="card-label">La Mesa — dishes, utensils &amp; glassware (11 words)</div>
+    <div class="vocab-grid" id="mesaGrid"></div>
+  </div>
+
+  <!-- Preposiciones -->
+  <div class="sec-h2 purple" style="margin-top:22px;">Preposiciones — <span>Location &amp; Position</span></div>
+  <div class="card">
+    <div class="card-label">Preposiciones de lugar (13 expressions)</div>
+    <div class="vocab-grid" id="prepGrid"></div>
+  </div>
+
+  <!-- Adjetivos -->
+  <div class="sec-h2 yellow" style="margin-top:22px;">Adjetivos — <span>Describing the Home</span></div>
+  <div class="card">
+    <div class="card-label">Adjetivos — clean, tidy, comfortable…</div>
+    <div class="vocab-grid" id="adjGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════ VERBOS — LA VIVIENDA ══════════════════ -->
+<div id="tab-verbos" class="section">
+  <p class="sec-title">Verbos — <span>La Vivienda</span></p>
+  <p class="sec-desc">Household chore and home-related verbs. Click any card to reveal the English meaning.</p>
+
+  <div class="section-controls">
+    <button class="btn" onclick="shuffleHouseVerbs()">🔀 Shuffle</button>
+    <div class="lang-toggle">
+      <button id="hv-es-btn" class="active" onclick="setHVLang('es')">ES → EN</button>
+      <button id="hv-en-btn" onclick="setHVLang('en')">EN → ES</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-label">Verbos — La Vivienda (21 verbos)</div>
+    <div class="vocab-grid" id="houseVerbGrid"></div>
   </div>
 </div>
 
@@ -514,13 +557,18 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
   <p class="sec-desc">Click the card to flip it. Use arrow buttons or keyboard arrows to navigate. Space bar also flips!</p>
   <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;align-items:center;">
     <select class="styled" id="fcDeck" onchange="loadDeck()">
-      <option value="ninez_act">👦 Actividades de la Niñez</option>
-      <option value="ninez_adj">😊 Adjetivos (Niñez)</option>
-      <option value="ninez_q">❓ Preguntas (Niñez)</option>
-      <option value="pret_trig">📅 Pretérito Trigger Words</option>
-      <option value="imp_trig">🔄 Imperfecto Trigger Words</option>
+      <option value="hogar">🏠 El Hogar</option>
+      <option value="cuartos">🚪 Los Cuartos</option>
+      <option value="muebles">🛋️ Los Muebles y Más</option>
+      <option value="electro">🍳 Electrodomésticos</option>
+      <option value="mesa">🍽️ La Mesa</option>
+      <option value="prep">📍 Preposiciones</option>
+      <option value="adj">✨ Adjetivos</option>
+      <option value="hvverbs">🧹 Verbos (La Vivienda)</option>
+      <option value="all_vocab">🔀 All Vivienda Vocab</option>
+      <option value="pret_trig">📅 Pretérito Triggers</option>
+      <option value="imp_trig">🔄 Imperfecto Triggers</option>
       <option value="special">⭐ Special Verbs (P vs I)</option>
-      <option value="ninez_all">🔀 All Niñez Vocab</option>
       <option value="ar">📋 -AR Verbs</option>
       <option value="er">📋 -ER Verbs</option>
       <option value="ir">📋 -IR Verbs</option>
@@ -554,72 +602,139 @@ select.styled { background: var(--surface2); border: 1px solid var(--border); co
 </main>
 
 <script>
-// ── DATA ─────────────────────────────────────────────────────────────────────
+// ══════════ DATA ══════════
 
-// Niñez question phrases
-const NINEZ_Q = [
-  ["¿Cómo eras?","What were you like?"],
-  ["¿Con qué soñabas?","What did you dream about?"],
-  ["¿Qué querías ser?","What did you want to be?"],
-  ["¿Qué hacías de niño/niña?","What did you do as a little boy/girl?"],
-  ["¿Qué te gustaba hacer?","What did you like to do?"],
-  ["De niño/a...","As a boy/girl/child..."],
-  ["Cuando era joven","When I was young"],
-  ["Cuando era un niño/a","When I was a child"],
+const EL_HOGAR = [
+  ["las afueras","outskirts"],
+  ["el apartamento","apartment"],
+  ["el campo","country / countryside"],
+  ["la ciudad","city"],
+  ["el/la vecino/a","neighbor"],
+  ["el vecindario","neighborhood"],
 ];
 
-// Niñez activities
-const NINEZ_ACT = [
-  ["asistir a la guardería infantil","to attend daycare"],
-  ["colorear","to color"],
-  ["columpiarse","to swing"],
-  ["compartir los juguetes","to share toys"],
-  ["coleccionar tarjetas","to collect trading cards"],
-  ["contar chistes / cuentos","to tell jokes / stories"],
-  ["echar carreras","to run races"],
-  ["hacer travesuras","to play tricks/pranks"],
-  ["jugar a la casita","to play house"],
-  ["jugar a las damas","to play checkers"],
-  ["jugar al escondite","to play hide and seek"],
-  ["jugar afuera / adentro","to play outside/inside"],
-  ["jugar con bloques","to play with blocks"],
-  ["jugar con canicas","to play with marbles"],
-  ["jugar con carritos","to play with toy cars"],
-  ["jugar con muñecas","to play with dolls"],
-  ["jugar con peluches","to play with stuffed animals"],
-  ["jugar en el patio de recreo","to play on the playground"],
-  ["llevarse bien / mal con","to get along well/poorly with"],
-  ["mirar dibujos animados","to watch cartoons"],
-  ["odiar","to hate"],
-  ["pelear","to fight"],
-  ["portarse bien/mal","to behave well/poorly"],
-  ["sacar buenas/malas notas","to get good/bad grades"],
-  ["saltar a la cuerda","to jump rope"],
-  ["soñar con","to dream about"],
-  ["trepar a los árboles","to climb trees"],
+const LOS_CUARTOS = [
+  ["el altillo","attic"],
+  ["el balcón","balcony"],
+  ["el baño","bathroom"],
+  ["la cocina","kitchen"],
+  ["el comedor","dining room"],
+  ["el dormitorio","bedroom"],
+  ["las escaleras","stairs"],
+  ["el garaje","garage"],
+  ["el jardín","garden"],
+  ["la oficina","office"],
+  ["el pasillo","hallway"],
+  ["el patio","yard"],
+  ["la sala","living room"],
+  ["el sótano","basement"],
 ];
 
-// Niñez adjectives
-const NINEZ_ADJ = [
-  ["amable","kind, nice"],
-  ["aventurero/a","adventurous"],
-  ["callado/a","quiet"],
-  ["cariñoso/a","affectionate"],
-  ["chismoso/a","gossipy"],
-  ["chistoso/a","funny"],
-  ["curioso/a","curious"],
-  ["hablador/a","talkative"],
-  ["egoísta","selfish"],
-  ["estricto/a","strict"],
-  ["mimado/a","spoiled"],
-  ["impaciente","impatient"],
-  ["juguetón/a","playful"],
-  ["obediente","obedient"],
-  ["paciente","patient"],
-  ["solitario/a","lonely, solitary"],
+const LOS_MUEBLES = [
+  ["la alfombra","rug / carpet"],
+  ["la almohada","pillow"],
+  ["el armario / el clóset","closet"],
+  ["la bañera","bathtub"],
+  ["la cama","bed"],
+  ["el cartel / el póster","poster"],
+  ["la cómoda","dresser"],
+  ["las cortinas","curtains"],
+  ["el cuadro","picture / painting (artwork on wall)"],
+  ["el espejo","mirror"],
+  ["el estante","shelf"],
+  ["el fregadero","kitchen sink"],
+  ["el inodoro","toilet"],
+  ["la lámpara","lamp"],
+  ["el lavamanos","bathroom sink"],
+  ["la luz","light"],
+  ["la manta","blanket"],
+  ["la mesita de noche","nightstand"],
+  ["la mesita de sala","coffee table"],
+  ["la pared","wall"],
+  ["las persianas","blinds"],
+  ["la pintura","painting"],
+  ["las sábanas","sheets"],
+  ["la silla","chair"],
+  ["el sillón","armchair"],
+  ["el sofá","sofa / couch"],
 ];
 
-// Preterite trigger words
+const LOS_ELECTRO = [
+  ["la cafetera","coffee maker"],
+  ["el congelador","freezer"],
+  ["la estufa","stove"],
+  ["el horno","oven"],
+  ["la lavadora","washing machine"],
+  ["el lavaplatos","dishwasher"],
+  ["el microondas","microwave"],
+  ["el refrigerador","refrigerator"],
+  ["la secadora","dryer"],
+];
+
+const LA_MESA = [
+  ["la copa","wineglass"],
+  ["los cubiertos","silverware"],
+  ["la cuchara","spoon"],
+  ["el cuchillo","knife"],
+  ["el mantel","tablecloth"],
+  ["el plato","plate"],
+  ["la servilleta","napkin"],
+  ["la taza","cup"],
+  ["el tazón","bowl"],
+  ["el tenedor","fork"],
+  ["el vaso","glass"],
+];
+
+const PREPOSICIONES = [
+  ["a la derecha de","to the right of"],
+  ["a la izquierda de","to the left of"],
+  ["al lado de","next to"],
+  ["cerca de","near"],
+  ["debajo de","under"],
+  ["delante de / enfrente de","in front of"],
+  ["dentro de","inside of"],
+  ["detrás de","behind"],
+  ["encima de","on top of"],
+  ["entre","between"],
+  ["frente a","facing"],
+  ["fuera de","outside of"],
+  ["lejos de","far from"],
+];
+
+const ADJETIVOS = [
+  ["cómodo/a","comfortable"],
+  ["incómodo/a","uncomfortable"],
+  ["limpio/a","clean"],
+  ["sucio/a","dirty"],
+  ["ordenado/a","tidy / neat"],
+  ["desordenado/a","messy"],
+];
+
+const HOUSE_VERBS = [
+  ["alquilar","to rent"],
+  ["arreglar","to fix"],
+  ["ayudar","to help"],
+  ["barrer el suelo","to sweep the floor"],
+  ["cocinar","to cook"],
+  ["colgar","to hang up"],
+  ["cortar el césped","to cut the grass"],
+  ["ensuciar(se)","to get dirty"],
+  ["hacer la cama","to make the bed"],
+  ["hacer quehaceres","to do chores"],
+  ["lavar los platos","to wash the dishes"],
+  ["lavar la ropa","to do laundry"],
+  ["limpiar la casa","to clean the house"],
+  ["mudarse","to move"],
+  ["pasar la aspiradora","to vacuum"],
+  ["planchar","to iron"],
+  ["poner la mesa","to set the table"],
+  ["quitar la mesa","to clear the table"],
+  ["quitar el polvo","to dust"],
+  ["sacar la basura","to take out the trash"],
+  ["sacudir los muebles","to dust the furniture"],
+];
+
+// ── Trigger / Special verbs ──────────────────────────────────
 const PRET_TRIGGERS = [
   ["ayer","yesterday"],
   ["anoche","last night"],
@@ -635,7 +750,6 @@ const PRET_TRIGGERS = [
   ["entonces","then"],
 ];
 
-// Imperfect trigger words
 const IMP_TRIGGERS = [
   ["todos los días","every day"],
   ["siempre","always"],
@@ -651,7 +765,6 @@ const IMP_TRIGGERS = [
   ["nunca","never"],
 ];
 
-// Special verbs — meaning changes by tense
 const SPECIAL_VERBS = [
   ["conocer (pretérito)","met for the first time"],
   ["saber (pretérito)","found out"],
@@ -661,6 +774,7 @@ const SPECIAL_VERBS = [
   ["había (imperfecto)","there was / there were (ongoing condition)"],
 ];
 
+// ── Secondary verb lists ──────────────────────────────────────
 const AR_VERBS = [
   ["acampar","to camp"],["almorzar","to eat lunch"],["ayudar","to help"],
   ["bailar","to dance"],["besar","to kiss"],["brindar","to toast"],
@@ -702,12 +816,18 @@ const IR_VERBS = [
   ["salir","to leave / go out"],["vivir","to live"],
 ];
 
-// ── VOCAB STATE ───────────────────────────────────────────────────────────────
-let ninezState = {
-  q:   { data: [...NINEZ_Q],       lang: 'es' },
-  act: { data: [...NINEZ_ACT],     lang: 'es' },
-  adj: { data: [...NINEZ_ADJ],     lang: 'es' },
+// ══════════ VOCAB STATE ══════════
+let vocabState = {
+  hogar:   { data: [...EL_HOGAR],    lang: 'es' },
+  cuartos: { data: [...LOS_CUARTOS], lang: 'es' },
+  muebles: { data: [...LOS_MUEBLES], lang: 'es' },
+  electro: { data: [...LOS_ELECTRO], lang: 'es' },
+  mesa:    { data: [...LA_MESA],     lang: 'es' },
+  prep:    { data: [...PREPOSICIONES], lang: 'es' },
+  adj:     { data: [...ADJETIVOS],   lang: 'es' },
 };
+
+let hvState = { data: [...HOUSE_VERBS], lang: 'es' };
 
 let trigState = {
   pret:    { data: [...PRET_TRIGGERS], lang: 'es' },
@@ -715,13 +835,13 @@ let trigState = {
   special: { data: [...SPECIAL_VERBS], lang: 'es' },
 };
 
-// ── BUILD VOCAB GRID (generic) ────────────────────────────────────────────────
-function buildVocabGrid(containerId, data, lang, cardClass) {
+// ══════════ BUILD VOCAB GRID ══════════
+function buildVocabGrid(containerId, data, lang) {
   const g = document.getElementById(containerId);
   g.innerHTML = '';
   data.forEach(([sp, en]) => {
     const d = document.createElement('div');
-    d.className = cardClass || 'vocab-card';
+    d.className = 'vocab-card';
     const front = lang === 'es' ? sp : en;
     const back  = lang === 'es' ? en : sp;
     d.innerHTML = `<div class="sp">${front}</div><div class="en">${back}</div><div class="tip">tap to reveal</div>`;
@@ -730,32 +850,64 @@ function buildVocabGrid(containerId, data, lang, cardClass) {
   });
 }
 
-function rebuildNinez() {
-  buildVocabGrid('ninezQGrid',   ninezState.q.data,   ninezState.q.lang);
-  buildVocabGrid('ninezActGrid', ninezState.act.data, ninezState.act.lang);
-  buildVocabGrid('ninezAdjGrid', ninezState.adj.data, ninezState.adj.lang);
+function rebuildVocab() {
+  buildVocabGrid('hogarGrid',   vocabState.hogar.data,   vocabState.hogar.lang);
+  buildVocabGrid('cuartosGrid', vocabState.cuartos.data, vocabState.cuartos.lang);
+  buildVocabGrid('mueblesGrid', vocabState.muebles.data, vocabState.muebles.lang);
+  buildVocabGrid('electroGrid', vocabState.electro.data, vocabState.electro.lang);
+  buildVocabGrid('mesaGrid',    vocabState.mesa.data,    vocabState.mesa.lang);
+  buildVocabGrid('prepGrid',    vocabState.prep.data,    vocabState.prep.lang);
+  buildVocabGrid('adjGrid',     vocabState.adj.data,     vocabState.adj.lang);
 }
 
-function setVocabLang(ns, lang) {
-  ninezState.q.lang   = lang;
-  ninezState.act.lang = lang;
-  ninezState.adj.lang = lang;
-  document.getElementById('ninez-es-btn').classList.toggle('active', lang === 'es');
-  document.getElementById('ninez-en-btn').classList.toggle('active', lang === 'en');
-  rebuildNinez();
+function setVocabLang(lang) {
+  Object.values(vocabState).forEach(s => s.lang = lang);
+  document.getElementById('vocab-es-btn').classList.toggle('active', lang === 'es');
+  document.getElementById('vocab-en-btn').classList.toggle('active', lang === 'en');
+  rebuildVocab();
 }
 
-function shuffleVocab(ns) {
-  [ninezState.q, ninezState.act, ninezState.adj].forEach(s => {
+function shuffleVocab() {
+  Object.values(vocabState).forEach(s => {
     for (let i = s.data.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [s.data[i], s.data[j]] = [s.data[j], s.data[i]];
     }
   });
-  rebuildNinez();
+  rebuildVocab();
 }
 
-// ── BUILD TRIGGER GRIDS ───────────────────────────────────────────────────────
+// ══════════ HOUSE VERBS ══════════
+function buildHVGrid() {
+  const g = document.getElementById('houseVerbGrid');
+  g.innerHTML = '';
+  hvState.data.forEach(([sp, en]) => {
+    const d = document.createElement('div');
+    d.className = 'vocab-card';
+    const front = hvState.lang === 'es' ? sp : en;
+    const back  = hvState.lang === 'es' ? en : sp;
+    d.innerHTML = `<div class="sp">${front}</div><div class="en">${back}</div><div class="tip">tap to reveal</div>`;
+    d.onclick = () => d.classList.toggle('revealed');
+    g.appendChild(d);
+  });
+}
+
+function setHVLang(lang) {
+  hvState.lang = lang;
+  document.getElementById('hv-es-btn').classList.toggle('active', lang === 'es');
+  document.getElementById('hv-en-btn').classList.toggle('active', lang === 'en');
+  buildHVGrid();
+}
+
+function shuffleHouseVerbs() {
+  for (let i = hvState.data.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [hvState.data[i], hvState.data[j]] = [hvState.data[j], hvState.data[i]];
+  }
+  buildHVGrid();
+}
+
+// ══════════ TRIGGER GRIDS ══════════
 function buildTrigGrid(containerId, data, lang, cardClass) {
   const g = document.getElementById(containerId);
   g.innerHTML = '';
@@ -778,16 +930,14 @@ function rebuildTriggers() {
 }
 
 function setTrigLang(lang) {
-  trigState.pret.lang    = lang;
-  trigState.imp.lang     = lang;
-  trigState.special.lang = lang;
+  Object.values(trigState).forEach(s => s.lang = lang);
   document.getElementById('trig-es-btn').classList.toggle('active', lang === 'es');
   document.getElementById('trig-en-btn').classList.toggle('active', lang === 'en');
   rebuildTriggers();
 }
 
 function shuffleTriggers() {
-  [trigState.pret, trigState.imp, trigState.special].forEach(s => {
+  Object.values(trigState).forEach(s => {
     for (let i = s.data.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [s.data[i], s.data[j]] = [s.data[j], s.data[i]];
@@ -796,7 +946,7 @@ function shuffleTriggers() {
   rebuildTriggers();
 }
 
-// ── VERB GRID ─────────────────────────────────────────────────────────────────
+// ══════════ SECONDARY VERB GRID ══════════
 function buildVerbGrid(id, data) {
   const g = document.getElementById(id);
   data.forEach(([inf, eng]) => {
@@ -808,7 +958,7 @@ function buildVerbGrid(id, data) {
   });
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────────
+// ══════════ TABS ══════════
 function showTab(name, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -816,25 +966,34 @@ function showTab(name, btn) {
   btn.classList.add('active');
 }
 
-// ── FLASHCARDS ────────────────────────────────────────────────────────────────
+// ══════════ FLASHCARDS ══════════
 let fcData = [], fcIdx = 0, fcFlipped = false, fcLang = 'es';
 
 function getDeckData(key) {
   const map = {
-    ninez_act:  NINEZ_ACT.map(([sp,en]) => ({f:sp, b:en, t:'Actividades'})),
-    ninez_adj:  NINEZ_ADJ.map(([sp,en]) => ({f:sp, b:en, t:'Adjetivos'})),
-    ninez_q:    NINEZ_Q.map(([sp,en]) => ({f:sp, b:en, t:'Preguntas'})),
-    pret_trig:  PRET_TRIGGERS.map(([sp,en]) => ({f:sp, b:en, t:'Pretérito'})),
-    imp_trig:   IMP_TRIGGERS.map(([sp,en]) => ({f:sp, b:en, t:'Imperfecto'})),
-    special:    SPECIAL_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'Special Verb'})),
-    ninez_all:  [
-      ...NINEZ_Q.map(([sp,en]) => ({f:sp, b:en, t:'Preguntas'})),
-      ...NINEZ_ACT.map(([sp,en]) => ({f:sp, b:en, t:'Actividades'})),
-      ...NINEZ_ADJ.map(([sp,en]) => ({f:sp, b:en, t:'Adjetivos'})),
+    hogar:    EL_HOGAR.map(([sp,en])    => ({f:sp, b:en, t:'El Hogar'})),
+    cuartos:  LOS_CUARTOS.map(([sp,en]) => ({f:sp, b:en, t:'Los Cuartos'})),
+    muebles:  LOS_MUEBLES.map(([sp,en]) => ({f:sp, b:en, t:'Los Muebles'})),
+    electro:  LOS_ELECTRO.map(([sp,en]) => ({f:sp, b:en, t:'Electrodomésticos'})),
+    mesa:     LA_MESA.map(([sp,en])     => ({f:sp, b:en, t:'La Mesa'})),
+    prep:     PREPOSICIONES.map(([sp,en]) => ({f:sp, b:en, t:'Preposición'})),
+    adj:      ADJETIVOS.map(([sp,en])   => ({f:sp, b:en, t:'Adjetivo'})),
+    hvverbs:  HOUSE_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'Verbo (Vivienda)'})),
+    all_vocab: [
+      ...EL_HOGAR.map(([sp,en])    => ({f:sp, b:en, t:'El Hogar'})),
+      ...LOS_CUARTOS.map(([sp,en]) => ({f:sp, b:en, t:'Los Cuartos'})),
+      ...LOS_MUEBLES.map(([sp,en]) => ({f:sp, b:en, t:'Los Muebles'})),
+      ...LOS_ELECTRO.map(([sp,en]) => ({f:sp, b:en, t:'Electrodomésticos'})),
+      ...LA_MESA.map(([sp,en])     => ({f:sp, b:en, t:'La Mesa'})),
+      ...PREPOSICIONES.map(([sp,en]) => ({f:sp, b:en, t:'Preposición'})),
+      ...ADJETIVOS.map(([sp,en])   => ({f:sp, b:en, t:'Adjetivo'})),
     ],
-    ar:         AR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-AR Verb'})),
-    er:         ER_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-ER Verb'})),
-    ir:         IR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-IR Verb'})),
+    pret_trig: PRET_TRIGGERS.map(([sp,en]) => ({f:sp, b:en, t:'Pretérito'})),
+    imp_trig:  IMP_TRIGGERS.map(([sp,en])  => ({f:sp, b:en, t:'Imperfecto'})),
+    special:   SPECIAL_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'Special Verb'})),
+    ar:        AR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-AR Verb'})),
+    er:        ER_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-ER Verb'})),
+    ir:        IR_VERBS.map(([sp,en]) => ({f:sp, b:en, t:'-IR Verb'})),
   };
   return map[key] || [];
 }
@@ -892,8 +1051,9 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-rebuildNinez();
+// ══════════ INIT ══════════
+rebuildVocab();
+buildHVGrid();
 rebuildTriggers();
 buildVerbGrid('arVerbGrid', AR_VERBS);
 buildVerbGrid('erVerbGrid', ER_VERBS);
